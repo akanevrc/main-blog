@@ -13,6 +13,11 @@ buildExpired: false
 
 googleAnalytics: G-BQQ526FSGM
 
+markup:
+  goldmark:
+    renderer:
+      hardWraps: true
+
 minify:
   disableXML: true
   minifyOutput: true
