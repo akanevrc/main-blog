@@ -1,4 +1,117 @@
 baseURL: https://akanevrc-main-blog.netlify.app/
 languageCode: ja-jp
 title: 茜の技術手帖
+copyright: © akanevrc
 theme: PaperMod
+
+paginate: 5
+
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+googleAnalytics: G-BQQ526FSGM
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+params:
+  env: production # to enable google analytics, opengraph, twitter-cards and schema.
+  title: 茜の技術手帖
+  description: "茜が日々触れるプログラミング関連技術について徒然なるままに"
+  keywords: [ Blog ]
+  author: 茜
+  images: [ "/favicon.png" ]
+  DateFormat: "2006-01-02"
+  defaultTheme: light # auto, dark, light
+  disableThemeToggle: false
+
+  ShowReadingTime: true
+  ShowShareButtons: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: false
+  disableSpecial1stPost: false
+  disableScrollToTop: false
+  comments: false
+  hidemeta: false
+  hideSummary: false
+  showtoc: false
+  tocopen: false
+
+  assets:
+    # disableHLJS: true # to disable highlight.js
+    # disableFingerprinting: true
+    favicon: "/favicon.png"
+    favicon16x16: "/favicon16x16.png"
+    favicon32x32: "/favicon32x32.png"
+    apple_touch_icon: "/apple-touch-icon.png"
+    safari_pinned_tab: "/favicon16x16.png"
+
+  label:
+    text: "Home"
+    icon: "/apple-touch-icon.png"
+    iconHeight: 35
+
+  # profile-mode
+  profileMode:
+    enabled: false # needs to be explicitly set
+    title: 茜の技術手帖
+    subtitle: "Akane's Tech Notes"
+    imageUrl: "/apple-touch-icon.png"
+    imageWidth: 120
+    imageHeight: 120
+    imageTitle: akanevrc
+    buttons:
+      - name: Posts
+        url: posts
+      - name: Tags
+        url: tags
+
+  # home-info mode
+  homeInfoParams:
+    Title: "ようこそ"
+    Content: Welcome to Akane's Tech Notes
+
+  socialIcons:
+    - name: twitter
+      url: "https://twitter.com/akanevrc"
+    - name: github
+      url: "https://github.com/akanevrc"
+
+  analytics:
+    google:
+      SiteVerificationTag: "wcGPDqbgEUaxqbXVObUsJSdS-zG4mzlyg_DseQGbeeQ"
+
+  cover:
+    hidden: true # hide everywhere but not in structured data
+    hiddenInList: true # hide on list pages and home
+    hiddenInSingle: true # hide on single page
+
+  editPost:
+    URL: "https://github.com/akanevrc/main-blog/tree/main/content"
+    Text: "Suggest Changes" # edit text
+    appendFilePath: true # to append file path to Edit link
+
+  # for search
+  # https://fusejs.io/api/options.html
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys: ["title", "permalink", "summary", "content"]
+menu:
+  main:
+    - identifier: categories
+      name: categories
+      url: /categories/
+      weight: 10
+    - identifier: tags
+      name: tags
+      url: /tags/
+      weight: 20
