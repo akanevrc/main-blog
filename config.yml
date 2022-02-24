@@ -56,7 +56,7 @@ params:
     safari_pinned_tab: "/favicon16x16.png"
 
   label:
-    text: "Home"
+    text: 茜の技術手帖
     icon: "/favicon.png"
     iconHeight: 35
 
