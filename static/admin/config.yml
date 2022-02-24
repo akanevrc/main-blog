@@ -21,10 +21,13 @@ collections:
         name: draft
         widget: boolean
         default: false
+      - label: Categories
+        name: categories
+        widget: list
+        default: [ blog ]
       - label: Tags
         name: tags
         widget: list
-        default: [ blog ]
       - label: Body
         name: body
         widget: markdown

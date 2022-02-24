@@ -1,7 +1,8 @@
 ---
 title: {{ .Name | title }}
-date : {{ .Date }}
+date: {{ .Date }}
 draft: false
-tags :
+categories:
   - blog
+tags:
 ---
