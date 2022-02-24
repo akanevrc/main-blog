@@ -8,9 +8,9 @@ tags:
   - Unity
   - AnimatorController
 ---
-私が以前作ったUnityEditorの拡張機能に、AnimatorControllerOverwriterというものがあります。
+私が以前作ったUnityEditorの拡張機能に、「アニメーションを移すツール」というものがあります。
 
-BOOTH | AnimatorControllerOverwriter
+BOOTH | 【VRChat想定】アニメーションを移すツール（AnimatorControllerOverwriter）【Unity】
 <https://akanezoranomukou.booth.pm/items/3618041>
 
 この製品のコードの中で`AnimatorController`を編集してから保存していますが、その方法を書いておきたいと思います。
