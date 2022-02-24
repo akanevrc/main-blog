@@ -47,12 +47,12 @@ params:
     favicon: "/favicon.png"
     favicon16x16: "/favicon16x16.png"
     favicon32x32: "/favicon32x32.png"
-    apple_touch_icon: "/apple-touch-icon.png"
+    apple_touch_icon: "/favicon.png"
     safari_pinned_tab: "/favicon16x16.png"
 
   label:
     text: "Home"
-    icon: "/apple-touch-icon.png"
+    icon: "/favicon.png"
     iconHeight: 35
 
   # profile-mode
@@ -60,7 +60,7 @@ params:
     enabled: false # needs to be explicitly set
     title: 茜の技術手帖
     subtitle: "Akane's Tech Notes"
-    imageUrl: "/apple-touch-icon.png"
+    imageUrl: "/favicon.png"
     imageWidth: 120
     imageHeight: 120
     imageTitle: akanevrc
