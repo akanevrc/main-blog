@@ -61,7 +61,7 @@ Udon Assemblyは大きく分けて2つの部分により構成されます。
 
 これらを以下のように記述します。
 
-```
+```text
 .data_start
     # データ部の記述
 .data_end
@@ -79,7 +79,7 @@ Udon Assemblyは大きく分けて2つの部分により構成されます。
 
 まずデータ部の記述例を示します。
 
-```
+```text
 .data_start
 
     .export _name
@@ -99,7 +99,7 @@ Udon Assemblyは大きく分けて2つの部分により構成されます。
 
 ### 変数定義
 
-```
+```text
 _name: %SystemString, "Akane"
 ```
 
@@ -118,7 +118,7 @@ _name: %SystemString, "Akane"
 加えて、角括弧`[]`と三角括弧`<>`の文字も使用できます。
 ただし、最初の文字はアルファベットとアンダースコアのみが許可されます。
 
-```
+```text
 【有効】
 x
 X
@@ -188,7 +188,7 @@ Public変数はUnityのInspectorで値を指定することができます。
 
 以下のように記述します。
 
-```
+```text
 .export _name
 _name: %SystemString, null
 ```
@@ -207,7 +207,7 @@ _name: %SystemString, null
 
 以下のように記述します。
 
-```
+```text
 .sync _value, none
 _value: %SystemSingle, 0.0
 ```
@@ -218,7 +218,7 @@ _value: %SystemSingle, 0.0
 
 コード部の例を示します。
 
-```
+```text
 .code_start
     .export _start
     _start:
@@ -260,7 +260,7 @@ Udon Assemblyのコード部は以下の3要素から成っています。
 以下の命令列について考えてみましょう。
 命令列は上の行から順に実行されます。
 
-```
+```text
 PUSH, a
 PUSH, b
 COPY
@@ -280,7 +280,7 @@ COPY
 
 別の例を見てみます。
 
-```
+```text
 PUSH, a
 PUSH, b
 PUSH, c
@@ -322,7 +322,7 @@ JUMP系命令は3種類あります。
 
 1は問答無用に命令の実行位置を指定したラベルへ遷移します。
 
-```
+```text
 PUSH, a
 PUSH, b
 JUMP, jump
@@ -337,7 +337,7 @@ COPY  # ここから実行
 取り出した値はBooleanのみ許可されます。
 Trueであれば素通りして次の命令に行きます。
 
-```
+```text
 PUSH, a
 PUSH, b
 JUMP_IF_FALSE, jump1
@@ -361,7 +361,7 @@ COPY
 
 このようにして、命令の位置はラベルだけでなく数値のアドレスでも表せるのですが、`JUMP_INDIRECT`命令の場合、指定された変数の値は必ず数値のアドレスとして解釈されますのでご注意ください。
 
-```
+```text
 .data_start
     jumpVar: %SystemUInt32, 0x000001F0
 .data_end
@@ -382,7 +382,7 @@ COPY
 .NETのメソッド呼び出しを行ないます。
 例えば、`UnityEngine.Debug.Log(obj)`を呼ぶには以下のようにします。
 
-```
+```text
 PUSH, obj
 EXTERN, "UnityEngineDebug.__Log__SystemObject__SystemVoid"
 ```
@@ -401,7 +401,7 @@ EXTERN, "UnityEngineDebug.__Log__SystemObject__SystemVoid"
 メソッドを呼ぶには変数の`PUSH`が必要です。
 以下のようにします。
 
-```
+```text
 PUSH, <インスタンス>  # 静的メソッドの場合は無し
 PUSH, <引数1>
 PUSH, <引数2>
@@ -420,7 +420,7 @@ EXTERN, "method"
 - `Update`イベント → `_update`ラベル
 - `OnPlayerJoined`イベント → `_onPlayerJoined`ラベル
 
-```
+```text
 .code_start
     .export _start
     _start:
