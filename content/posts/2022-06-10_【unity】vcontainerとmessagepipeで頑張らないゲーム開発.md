@@ -1,5 +1,5 @@
 ---
-title: 【Unity】VContainerとMessagePipeで頑張らないゲーム開発
+title: 【Unity】VContainerとMessagePipeで再利用性を高める
 date: 2022-06-10T01:47:24.408Z
 draft: false
 categories:
@@ -75,11 +75,11 @@ namespace tana_gh.LibraryTest
 
 `Configure`メソッドの`builder`を使用してコンテナの設定をします。
 
-```
-builder.RegisterComponentInHierarchy<ABehaviour>(); // Hierarchy上のオブジェクト
-builder.RegisterComponent<BBehaviour>(bPrefab);   // Prefab
-builder.Register<CType>(Lifetime.Scoped);           // Plain Object（スコープ付き）
-builder.RegisterEntryPoint<DEntryPoint>();          // EntryPoint
+```csharp
+builder.RegisterComponentInHierarchy<IBehaviourA>(); // Hierarchy上のオブジェクト
+builder.RegisterComponent<IBehaviourB>(prefabB);     // Prefab
+builder.Register<ITypeC>(Lifetime.Scoped);           // Plain Object（スコープ付き）
+builder.RegisterEntryPoint<IEntryPointD>();          // EntryPoint
 ```
 
 `RegisterXX`メソッドで各種オブジェクトを登録できます。
@@ -91,6 +91,70 @@ builder.RegisterEntryPoint<DEntryPoint>();          // EntryPoint
 
 ## MessagePipeの使い方
 
+登録にはVContainerの拡張メソッドを使います。
 
+```csharp
+var messagePipeOptions = builder.RegisterMessagePipe();
+builder.RegisterMessageBroker<XXEvent>(messagePipeOptions);
+```
+
+実際の処理では、`IPublisher`と`ISubscriber`を使用して発行/購読を行ないます。
+
+```csharp
+public class XXBehaviour : MonoBehaviour
+{
+    [Inject] private IPublisher<XXEvent> publisher;
+
+    public void OnPointerDown()
+    {
+        this.publisher.Publish(new XXEvent());
+    }
+}
+```
+
+```csharp
+public class XXEventHandler : IDisposable
+{
+    private ISubscriber<XXEvent> subscriber;
+
+    private DisposableBagBuilder disposables = DisposableBag.CreateBuilder();
+    private bool disposedValue = false;
+
+    public XXHandler(ISubscriber<XXEvent> subscriber)
+    {
+        this.subscriber = subscriber;
+
+        this.subscriber.Subscribe(ev => OnPointerDown()).AddTo(disposables);
+    }
+
+    public void OnPointerDown()
+    {
+        // イベント本体
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!disposedValue)
+        {
+            if (disposing)
+            {
+                this.disposables.Build().Dispose();
+            }
+            disposedValue = true;
+        }
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+}
+```
+
+イベントの発行者と購読者に依存関係が無いことが分かります。
 
 ## まとめ
+
+VContainerとMessagePipeで疎結合な再利用性の高いコードを書けます。
+整理されたコードはバグの減少にも繋がるので、積極的に利用していきましょう。
