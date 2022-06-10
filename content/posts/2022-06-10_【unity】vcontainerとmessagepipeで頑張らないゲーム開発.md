@@ -61,7 +61,7 @@ using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
-namespace tana_gh.LibraryTest
+namespace akanevrc.LibraryTest
 {
     public class MainLifetimeScope : LifetimeScope
     {
